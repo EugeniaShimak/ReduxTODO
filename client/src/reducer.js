@@ -1,26 +1,15 @@
 import {Map} from 'immutable'
 
-export const reducer = function (state = Map(), action) {
-    debugger
+
+export default function (state = Map(), action) {
     switch (action.type) {
         case "SET_STATE":
             return state.merge(action.state);
         case "ADD_PHONE":
-            return state.update("phones", (phones) => {
-                debugger;
-                return phones.push(action.phone)
-            });
+            return state.update("phones", phones => phones.concat(action.phone));
         case "DELETE_PHONE":
             return state.update("phones",
-                (phones) => {debugger
-                    phones.forEach((phone, index) => {
-                        if (phone === action.phone) {
-                            phones.splice(index, 1);
-                            break;
-                        }
-                    })
-                }
-            );
+                phones => phones.filter((phone) => phone !== action.phone))
     }
     return state;
 };
