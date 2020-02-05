@@ -10,7 +10,7 @@ import {createStore} from "redux";
 
 var store = createStore(reducer);
 
-debugger
+
 store.dispatch({
     type: "SET_STATE",
     state: {
